@@ -19,10 +19,6 @@ const ShipmentTable = () => {
           setItemes(allData);
     },[allData])
 
-        
-
-     
-
   return (
     
     <Container>
@@ -41,10 +37,10 @@ const ShipmentTable = () => {
         </tr>
       </thead>
       <tbody>
-      {items.length >=1 ? (items.map((item) =>{
+      {items.length >=1 ? (items.map((item, index) =>{
             return(
                 // <Link to={`/shipment/${item.id}`}>
-                <tr>
+                <tr key={index}>
                 <td>{item.orderNo}</td>
                 <td>{item.date}</td>
                 <td>{item.customer}</td>
@@ -53,10 +49,7 @@ const ShipmentTable = () => {
                 <td>{item.consignee}</td>
                 <td style={{width: "10%"}}>
                   <Link to={`/shipment/${item.orderNo}`}>
-                  <Button onClick={()=>{
-                    dispatch(handleUpdate(item.orderNo,item.date,item.customer,item.trackingNo,item.status,item.consignee))
-                    }}  
-                  variant="info"><i className="fa fa-id-card" 
+                  <Button  variant="info"><i className="fa fa-id-card" 
                   style={{color: "#fff"}}></i></Button>{" "}
                   </Link>
                   
