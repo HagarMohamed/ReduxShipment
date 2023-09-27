@@ -35,21 +35,16 @@ export const shipReducer = (state = intialValue, action) => {
             };
 
         case UPDATE:
-            // const selectedShipItem =  state.detail
-            // const updatedShipItem = action.data
-
-            // selectedShipItem.date = .date
-
-            const updatedShipItem = state.data.find((item) => item.orderNo === action.data.orderNo);
-            updatedShipItem.date = action.data.date
-            updatedShipItem.customer = action.data.customer
-            updatedShipItem.trackingNo = action.data.trackingNo
-            updatedShipItem.status = action.data.status
-            updatedShipItem.consignee = action.data.consignee
-
+            
             return {
-                detail: action.data,
-                data: state.data
+                detail: state.detail,
+                data: state.data.map((shipItem) =>{
+                    if(shipItem.orderNo === action.data.orderNo){
+                        return action.data
+                    }else{
+                       return shipItem 
+                    }
+                })
             };
         default:
             return state;
